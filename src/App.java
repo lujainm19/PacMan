@@ -10,7 +10,7 @@ public class App {
         int boardHeight = rowCount*tileSize;
 
          JFrame frame = new JFrame("Pac Man");
-        frame.setVisible(true);
+        //frame.setVisible(true);
         frame.setSize(boardwidth, boardHeight);
         //for window to appear at center of the screen
         frame.setLocationRelativeTo(null);
@@ -18,6 +18,13 @@ public class App {
         frame.setResizable(false);
         //game to terminate if clicked on X button
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        PacMan pacmanGame = new PacMan();
+        frame.add(pacmanGame);
+        frame.pack();
+        //to make frame visible after JPanel added
+        frame.setVisible(true);
+
 
     }
 }

@@ -25,6 +25,5 @@ public class App {
         //to make frame visible after JPanel added
         frame.setVisible(true);
 
-
     }
 }

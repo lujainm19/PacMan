@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.swing.*;
 
 
-public class PacMan extends JPanel {
+public class PacMan extends JPanel implements ActionListener{
     class Block {
         int x;
         int y;
@@ -78,6 +78,9 @@ public class PacMan extends JPanel {
     HashSet<Block> ghosts;
     Block pacman;
 
+    //Need a gameloop for actionPerformed code to execute, which is a timer
+    Timer gameLoop;
+
 
     PacMan() {
         setPreferredSize(new Dimension(boardwidth, boardHeight));
@@ -96,6 +99,10 @@ public class PacMan extends JPanel {
         pacmanRightImage = new ImageIcon(getClass().getResource("./pacmanRight.png")).getImage();
 
         loadMap();
+        //50 is the delay, and ‘ this’ refers to the pacman object
+        //how long it takes to start timer, miliseconds gone between frames
+        gameLoop = new Timer(50, this); //20fps (1000/50) every 50 miliseconds we are going to repaint, 1000 miliseconds in 1 sec / 50 = 20 so 20 frames per second
+        gameLoop.start();
 
     }
 
@@ -166,5 +173,11 @@ public class PacMan extends JPanel {
         for (Block food : foods) {
             g.fillRect(food.x, food.y, food.width, food.height);
         }    
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        repaint();
+        //calls paintComponent again, As when moving keeps changing paintComponent
     }
 }

@@ -66,6 +66,11 @@ public class PacMan extends JPanel implements ActionListener, KeyListener{
          
             }
         }
+
+        void reset() {
+            this.x = this.startX;
+            this.y = this.startY;
+        }
     }
 
     //JPanel will have the same size as the window 

@@ -212,6 +212,13 @@ public class PacMan extends JPanel implements ActionListener, KeyListener{
         pacman.y += pacman.velocityY;
     }
 
+    public boolean collision(Block a, Block b) {
+        return  a.x < b.x + b.width &&
+                a.x + a.width > b.x &&
+                a.y < b.y + b.height &&
+                a.y + a.height > b.y;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         //to update positions of objects first then repaint

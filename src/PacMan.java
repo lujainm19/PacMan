@@ -258,9 +258,9 @@ public class PacMan extends JPanel implements ActionListener, KeyListener{
         for (Block ghost : ghosts) {
             if(collision(ghost, pacman)) {
                 lives -= 1;
-                resetPositions;
+                resetPositions();
             }
-            
+
             if (ghost.y == tileSize*9 && ghost.direction != 'U' && ghost.direction != 'D'){  
                 ghost.updateDirection('U'); //make ghost move upwards in case stuck in one row
             }
@@ -293,6 +293,17 @@ public class PacMan extends JPanel implements ActionListener, KeyListener{
                 a.x + a.width > b.x &&
                 a.y < b.y + b.height &&
                 a.y + a.height > b.y;
+    }
+
+    public void resetPositions() {
+        pacman.reset();
+        pacman.velocityX = 0;
+        pacman.velocityY = 0;
+        for (Block ghost : ghosts) {
+            ghost.reset();
+            char newDirection = directions[random.nextInt(4)];
+            ghost.updateDirection(newDirection);
+        }
     }
 
     @Override

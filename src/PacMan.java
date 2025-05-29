@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.swing.*;
 
 
-public class PacMan extends JPanel implements ActionListener{
+public class PacMan extends JPanel implements ActionListener, KeyListener{
     class Block {
         int x;
         int y;
@@ -85,6 +85,9 @@ public class PacMan extends JPanel implements ActionListener{
     PacMan() {
         setPreferredSize(new Dimension(boardwidth, boardHeight));
         setBackground(Color.BLACK);
+        //this as reference is pacman so that listens and processes to the 3 key presses 
+        addKeyListener(this);
+        setFocusable(true);
 
         //load images
         wallImage = new ImageIcon(getClass().getResource("./wall.png")).getImage();
@@ -179,5 +182,19 @@ public class PacMan extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         repaint();
         //calls paintComponent again, As when moving keeps changing paintComponent
+    }
+
+    @Override
+    // not going to use as it is for number or alphabet keys
+    public void keyTyped(KeyEvent e) {}
+
+    @Override
+    //can press on the key or hold on to it to trigger this function so not needed either
+    public void keyPressed(KeyEvent e) {}
+
+    @Override
+    //only triggered if hold on or press a key then released 
+    public void keyReleased(KeyEvent e) {
+        System.out.println("KeyEvent: " + e.getKeyCode());
     }
 }

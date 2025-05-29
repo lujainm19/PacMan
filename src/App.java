@@ -22,6 +22,7 @@ public class App {
         PacMan pacmanGame = new PacMan();
         frame.add(pacmanGame);
         frame.pack();
+        pacmanGame.requestFocus();
         //to make frame visible after JPanel added
         frame.setVisible(true);
 

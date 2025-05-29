@@ -256,6 +256,11 @@ public class PacMan extends JPanel implements ActionListener, KeyListener{
 
         //check ghost collisions
         for (Block ghost : ghosts) {
+            if(collision(ghost, pacman)) {
+                lives -= 1;
+                resetPositions;
+            }
+            
             if (ghost.y == tileSize*9 && ghost.direction != 'U' && ghost.direction != 'D'){  
                 ghost.updateDirection('U'); //make ghost move upwards in case stuck in one row
             }

@@ -120,6 +120,8 @@ public class PacMan extends JPanel implements ActionListener, KeyListener{
 
     //Need a gameloop for actionPerformed code to execute, which is a timer
     Timer gameLoop;
+    char[] directions = {'U', 'D', 'L', 'R'};//up down left right
+    Random random = new Random();
 
 
     PacMan() {
@@ -142,6 +144,11 @@ public class PacMan extends JPanel implements ActionListener, KeyListener{
         pacmanRightImage = new ImageIcon(getClass().getResource("./pacmanRight.png")).getImage();
 
         loadMap();
+        //So for each ghost we randomly select the direction
+        for (Block ghost : ghosts) {
+            char newDirection = directions[random.nextInt(4)];
+            ghost.updateDirection(newDirection);
+        }
         //50 is the delay, and ‘ this’ refers to the pacman object
         //how long it takes to start timer, miliseconds gone between frames
         gameLoop = new Timer(50, this); //20fps (1000/50) every 50 miliseconds we are going to repaint, 1000 miliseconds in 1 sec / 50 = 20 so 20 frames per second
@@ -268,7 +275,7 @@ public class PacMan extends JPanel implements ActionListener, KeyListener{
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             pacman.updateDirection('R');
         } 
-
+        //To change direction that pacman faces when moving U D R L 
         if (pacman.direction == 'U') {
             pacman.image = pacmanUpImage;
         } else if (pacman.direction == 'D') {

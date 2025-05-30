@@ -316,6 +316,9 @@ public class PacMan extends JPanel implements ActionListener, KeyListener{
         move();
         repaint();
         //calls paintComponent again, As when moving keeps changing paintComponent
+        if (gameOver) {
+            gameLoop.stop();
+        }
     }
 
     @Override

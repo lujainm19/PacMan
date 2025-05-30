@@ -332,6 +332,14 @@ public class PacMan extends JPanel implements ActionListener, KeyListener{
     @Override
     //only triggered if hold on or press a key then released 
     public void keyReleased(KeyEvent e) {
+        if (gameOver) {
+            loadMap();
+            resetPositions();
+            lives = 3;
+            score = 0;
+            gameOver = false;
+            gameLoop.start();
+        }
         //System.out.println("KeyEvent: " + e.getKeyCode());
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             pacman.updateDirection('U');
